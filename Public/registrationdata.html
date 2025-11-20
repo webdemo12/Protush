@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Data - Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="admin-header">
+        <div class="admin-container">
+            <h1 class="admin-title">Registration Data</h1>
+            <div class="admin-actions">
+                <button class="btn-secondary" onclick="logout()" data-testid="button-logout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);">Logout</button>
+                <button class="btn-primary" onclick="refreshData()" data-testid="button-refresh">Refresh Data</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="admin-container">
+        <div class="table-card">
+            <div class="table-stats">
+                <p>Total Registrations: <strong id="totalCount" data-testid="text-total">0</strong></p>
+            </div>
+            
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>WhatsApp</th>
+                            <th>Category</th>
+                            <th>Year</th>
+                            <th>Payment Status</th>
+                            <th>Payment ID</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="registrationTableBody">
+                        <tr>
+                            <td colspan="10" class="loading-cell">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p class="footer-note">West Bengal Physician Associate Summit 2025 - Admin Dashboard</p>
+    </footer>
+
+    <script src="/admin.js"></script>
+</body>
+</html>

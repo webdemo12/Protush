@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form - West Bengal Physician Associate Summit 2025</title>
+    <meta name="description" content="Register for the West Bengal Physician Associate Summit 2025. Join medical professionals and students for an enriching conference experience.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-overlay">
+            <h1 class="hero-title">Registration Form</h1>
+            <p class="hero-subtitle">for West Bengal Physician Associate Summit 2025</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-card">
+            <div class="form-info">
+                <p class="info-text">
+                    The name, email, and photo associated with your account will be recorded when you upload files and submit this form.
+                </p>
+                <p class="required-note">* Indicates required question</p>
+            </div>
+
+            <form id="registrationForm" enctype="multipart/form-data">
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">Personal Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email <span class="required">*</span></label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input" 
+                            placeholder="your.email@example.com"
+                            required
+                            data-testid="input-email">
+                        <span class="error-message" id="email-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name <span class="required">*</span></label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            class="form-input" 
+                            placeholder="Your full name"
+                            required
+                            data-testid="input-name">
+                        <span class="error-message" id="name-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactNumber" class="form-label">Contact Number <span class="required">*</span></label>
+                        <input 
+                            type="tel" 
+                            id="contactNumber" 
+                            name="contactNumber" 
+                            class="form-input" 
+                            placeholder="10-digit mobile number"
+                            pattern="[0-9]{10}"
+                            required
+                            data-testid="input-contact">
+                        <span class="error-message" id="contact-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whatsappNumber" class="form-label">WhatsApp Number (if different)</label>
+                        <input 
+                            type="tel" 
+                            id="whatsappNumber" 
+                            name="whatsappNumber" 
+                            class="form-input" 
+                            placeholder="10-digit WhatsApp number"
+                            pattern="[0-9]{10}"
+                            data-testid="input-whatsapp">
+                    </div>
+                </div>
+
+                <!-- Registration Category Section -->
+                <div class="form-section">
+                    <h2 class="section-title">Registration Details</h2>
+                    
+                    <div class="form-group">
+                        <label for="registrationCategory" class="form-label">Registration Category <span class="required">*</span></label>
+                        <select 
+                            id="registrationCategory" 
+                            name="registrationCategory" 
+                            class="form-select"
+                            required
+                            data-testid="select-category">
+                            <option value="">Choose</option>
+                            <option value="student">Student</option>
+                            <option value="professional">Professional</option>
+                            <option value="academic">Academic</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span class="error-message" id="category-error"></span>
+                    </div>
+
+                    <!-- Student Year Selection (shown conditionally) -->
+                    <div class="form-group" id="studentYearGroup" style="display: none;">
+                        <label class="form-label">Year of studying (if student) <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="yearOfStudying" value="1st" data-testid="radio-year-1st">
+                                <span>1st</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="yearOfStudying" value="2nd" data-testid="radio-year-2nd">
+                                <span>2nd</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="yearOfStudying" value="3rd" data-testid="radio-year-3rd">
+                                <span>3rd</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="yearOfStudying" value="Intern" data-testid="radio-year-intern">
+                                <span>Intern</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Professional Year Selection (shown conditionally) -->
+                    <div class="form-group" id="professionalYearGroup" style="display: none;">
+                        <label for="yearOfPassing" class="form-label">Year of passing (if Professional) <span class="required">*</span></label>
+                        <input 
+                            type="text" 
+                            id="yearOfPassing" 
+                            name="yearOfPassing" 
+                            class="form-input" 
+                            placeholder="e.g., 2020"
+                            pattern="[0-9]{4}"
+                            data-testid="input-year-passing">
+                    </div>
+
+                    <!-- Registration Fee Display -->
+                    <div class="form-group" id="amountDisplay" style="display: none;">
+                        <div class="amount-box">
+                            <label class="form-label">Registration Fee</label>
+                            <div class="amount-value" id="amountValue">₹0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="clearForm()" data-testid="button-clear">Clear form</button>
+                    <button type="submit" class="btn-primary" id="submitBtn" data-testid="button-submit">Proceed to Payment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Never submit passwords through this form.</p>
+        <p class="footer-note">West Bengal Physician Associate Summit 2025</p>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - West Bengal Physician Associate Summit 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-overlay">
+            <h1 class="hero-title">Admin Login</h1>
+            <p class="hero-subtitle">West Bengal Physician Associate Summit 2025</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="login-card">
+            <h2 class="login-title">Sign In</h2>
+            <p class="login-subtitle">Enter your credentials to access the admin dashboard</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username" class="form-label">Username <span class="required">*</span></label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        class="form-input" 
+                        placeholder="Enter username"
+                        required
+                        data-testid="input-username">
+                    <span class="error-message" id="username-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Password <span class="required">*</span></label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-input" 
+                        placeholder="Enter password"
+                        required
+                        data-testid="input-password">
+                    <span class="error-message" id="password-error"></span>
+                </div>
+
+                <div class="error-message" id="login-error" style="text-align: center; font-weight: 500;"></div>
+
+                <button type="submit" class="btn-primary" id="loginBtn" style="width: 100%; margin-top: 1rem;" data-testid="button-login">
+                    Sign In
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <a href="/" class="back-link" data-testid="link-home">← Back to Registration</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p class="footer-note">West Bengal Physician Associate Summit 2025</p>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('loginBtn');
+            const loginError = document.getElementById('login-error');
+            
+            loginError.textContent = '';
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Signing in...';
+
+            try {
+                const response = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    window.location.href = '/registrationdata.html';
+                } else {
+                    loginError.textContent = result.error || 'Invalid credentials';
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = 'Sign In';
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                loginError.textContent = 'An error occurred. Please try again.';
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Sign In';
+            }
+        });
+    </script>
+</body>
+</html>
